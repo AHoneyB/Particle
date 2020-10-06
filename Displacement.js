@@ -16,7 +16,7 @@ class Displacement {
     this.acc.set(0, 0);
   }
 
-  friction() {
+  drag() {
     let diff = height - (this.pos.y + this.r);
     if (diff < 1) {
       let friction = this.vel.copy();

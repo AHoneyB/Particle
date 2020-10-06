@@ -12,10 +12,10 @@ function setup() {
       (i + 1) * 2,
       (width / num) * i + 10,
       height / 2,
-      5,
+      0,
       0
     );
-    pointMasses[i].setToGround();
+    // pointMasses[i].setToGround();
 
     //random(-maxv, maxv)
   }
@@ -43,7 +43,8 @@ function draw() {
 
   for (i = 0; i < num; i++) {
     var weight = p5.Vector.mult(gravity, pointMasses[i].mass);
-    pointMasses[i].friction();
+    pointMasses[i].netForce(weight);
+    pointMasses[i].drag();
     pointMasses[i].update();
     pointMasses[i].show();
   }
