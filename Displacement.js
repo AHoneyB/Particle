@@ -22,19 +22,19 @@ class Displacement {
     this.acc.add(f);
   }
 
-  // friction() {
-  //   let diff = height - (this.pos.y + this.r);
-  //   if (diff < 1) {
-  //     let friction = this.vel.copy();
-  //     friction.normalize();
-  //     friction.mult(-1);
+  friction() {
+    let diff = height - (this.pos.y + this.r);
+    if (diff < 1) {
+      let friction = this.vel.copy();
+      friction.normalize();
+      friction.mult(-1);
 
-  //     let mu = 0.1;
-  //     let normal = this.mass;
-  //     friction.setMag(mu * normal);
-  //     this.netForce(friction);
-  //   }
-  // }
+      let mu = 0.1;
+      let normal = this.mass;
+      friction.setMag(mu * normal);
+      this.netForce(friction);
+    }
+  }
 
   update() {
     // set last state to current state before update
