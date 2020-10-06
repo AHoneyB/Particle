@@ -1,10 +1,10 @@
 class Displacement {
   constructor(mass, x, y, vx, vy) {
+    this.r = sqrt(this.mass) * 10;
     this.pos = createVector(x, y);
     this.vel = createVector(vx, vy);
     this.acc = createVector(0, 0);
     this.mass = mass;
-    this.r = sqrt(this.mass) * 10;
 
     this.posLast = this.pos;
     this.velLast = this.vel;
@@ -22,6 +22,20 @@ class Displacement {
     this.acc.add(f);
   }
 
+  // friction() {
+  //   let diff = height - (this.pos.y + this.r);
+  //   if (diff < 1) {
+  //     let friction = this.vel.copy();
+  //     friction.normalize();
+  //     friction.mult(-1);
+
+  //     let mu = 0.1;
+  //     let normal = this.mass;
+  //     friction.setMag(mu * normal);
+  //     this.netForce(friction);
+  //   }
+  // }
+
   update() {
     // set last state to current state before update
     this.vel.add(this.acc);
@@ -34,13 +48,14 @@ class Displacement {
   }
 
   boundry() {
-    if (this.pos.y > height) {
+    // Added radius to particle
+    if (this.pos.y > height - this.r) {
       if (this.vel.y > 0) {
         this.vel.y *= -1;
         this.pos.add(this.vel);
       }
     }
-    if (this.pos.y < 0) {
+    if (this.pos.y < this.r) {
       if (this.vel.y < 0) {
         this.vel.y *= -1;
         this.pos.add(this.vel);
@@ -49,13 +64,13 @@ class Displacement {
     //  if (this.pos.y > height-this.r) DETERMINE EDGE of circle
     // this.pos = hieght-this.r;
 
-    if (this.pos.x > width) {
+    if (this.pos.x > width - this.r) {
       if (this.vel.x > 0) {
         this.vel.x *= -1;
         this.pos.add(this.vel);
       }
     }
-    if (this.pos.x < 0) {
+    if (this.pos.x < this.r) {
       if (this.vel.x < 0) {
         this.vel.x *= -1;
         this.pos.add(this.vel);
