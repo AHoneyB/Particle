@@ -13,6 +13,7 @@ class Displacement {
 
   netForce(force) {
     // Use static version of division
+    setNetForceZero();
     var f = p5.Vector.div(force, this.mass);
     //force.div(this.mass);
     this.acc.add(f);
@@ -51,11 +52,20 @@ class Displacement {
     // set last state to current state before update
     this.vel.add(this.acc);
     this.pos.add(this.vel);
+    this.acc.set(0, 0);
+    // set last state
+    // check boundries
+  }
+
+  update() {
+    // set last state to current state before update
+    this.vel.add(this.acc);
+    this.pos.add(this.vel);
     //this.acc.set(0, 0);
     // set last state
     // check boundries
 
-    //this.boundry();
+    this.boundry();
   }
 
   show() {
