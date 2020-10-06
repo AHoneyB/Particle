@@ -11,8 +11,9 @@ function setup() {
       width / 2,
       height / 2,
       random(-maxv, maxv),
-      random(-maxv, maxv)
+      0
     );
+    pointMasses[i].setToGround();
     //pointMasses[i] = new Displacement(i + 1, width / 2, height * 0.1, 0, 0);
   }
   background(0);

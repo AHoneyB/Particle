@@ -7,6 +7,10 @@ class Displacement {
     this.r = sqrt(this.mass) * 10;
   }
 
+  setToGround() {
+    this.pos.y = height - this.r;
+  }
+
   setNetForceZero() {
     this.acc.set(0, 0);
   }
