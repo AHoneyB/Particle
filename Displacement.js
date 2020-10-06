@@ -17,17 +17,14 @@ class Displacement {
   }
 
   drag() {
-    let diff = height - (this.pos.y + this.r);
-    if (diff < 1) {
-      let friction = this.vel.copy();
-      friction.normalize();
-      friction.mult(-1);
+    let drag = this.vel.copy();
+    drag.normalize();
+    drag.mult(-1);
 
-      let mu = 0.001;
-      let normal = this.mass * this.mass;
-      friction.setMag(mu * normal);
-      this.netForce(friction);
-    }
+    let c = 0.5;
+    let speedSq = this.vel.magSq();
+    drag.setMag(c * speedSq);
+    this.netForce(drag);
   }
 
   netForce(force) {

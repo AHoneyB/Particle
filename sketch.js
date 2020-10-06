@@ -11,9 +11,9 @@ function setup() {
     pointMasses[i] = new Displacement(
       (i + 1) * 2,
       (width / num) * i + 10,
-      height / 2,
+      height * 0.1,
       0,
-      0
+      5
     );
     // pointMasses[i].setToGround();
 
@@ -24,6 +24,11 @@ function setup() {
 
 function draw() {
   background(0);
+
+  fill(255, 125);
+  noStroke();
+  rect(0, height / 2, width, height / 2);
+
   for (i = 0; i < num; i++) {
     pointMasses[i].setNetForceZero();
   }
@@ -44,7 +49,9 @@ function draw() {
   for (i = 0; i < num; i++) {
     var weight = p5.Vector.mult(gravity, pointMasses[i].mass);
     pointMasses[i].netForce(weight);
-    pointMasses[i].drag();
+    if (pointMasses[i].pos.y > height / 2) {
+      pointMasses[i].drag();
+    }
     pointMasses[i].update();
     pointMasses[i].show();
   }
