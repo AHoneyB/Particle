@@ -4,9 +4,7 @@ class Displacement {
     this.vel = createVector(vx, vy);
     this.acc = createVector(0, 0);
     this.mass = mass;
-    console.log("mass = " + this.mass);
     this.r = 5 * sqrt(this.mass);
-    //this.r = 10;
   }
 
   setToGround() {
@@ -24,10 +22,9 @@ class Displacement {
       friction.normalize();
       friction.mult(-1);
 
-      let mu = 0.01;
+      let mu = 0.001;
       let normal = this.mass * this.mass;
       friction.setMag(mu * normal);
-      //console.log(friction.mag());
       this.netForce(friction);
     }
   }
