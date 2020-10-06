@@ -5,8 +5,8 @@ class Displacement {
     this.acc = createVector(0, 0);
     this.mass = mass;
     console.log("mass = " + this.mass);
-    //this.r = sqrt(this.mass) * 10;
-    this.r = 10;
+    this.r = 5 * sqrt(this.mass);
+    //this.r = 10;
   }
 
   setToGround() {
@@ -24,9 +24,10 @@ class Displacement {
       friction.normalize();
       friction.mult(-1);
 
-      let mu = 0.05;
-      let normal = this.mass;
+      let mu = 0.01;
+      let normal = this.mass * this.mass;
       friction.setMag(mu * normal);
+      //console.log(friction.mag());
       this.netForce(friction);
     }
   }
@@ -70,7 +71,7 @@ class Displacement {
     // set last state to current state before update
     this.vel.add(this.acc);
     this.pos.add(this.vel);
-    //this.acc.set(0, 0);
+    this.acc.set(0, 0);
     // set last state
     // check boundries
 

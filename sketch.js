@@ -7,7 +7,7 @@ function setup() {
   createCanvas(600, 600);
   for (i = 0; i < num; i++) {
     pointMasses[i] = new Displacement(
-      random(1, 100),
+      random(1, 10),
       (width / num) * i + 10,
       height / 2,
       5,
@@ -41,7 +41,7 @@ function draw() {
     // pointMasses[i].netForce(weight);
     pointMasses[i].friction();
     pointMasses[i].update();
-    pointMasses[i].setNetForceZero();
+    //pointMasses[i].setNetForceZero();
     pointMasses[i].boundry();
     pointMasses[i].show();
   }
