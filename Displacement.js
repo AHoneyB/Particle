@@ -4,7 +4,9 @@ class Displacement {
     this.vel = createVector(vx, vy);
     this.acc = createVector(0, 0);
     this.mass = mass;
-    this.r = sqrt(this.mass) * 10;
+    console.log("mass = " + this.mass);
+    //this.r = sqrt(this.mass) * 10;
+    this.r = 10;
   }
 
   setToGround() {
@@ -22,7 +24,7 @@ class Displacement {
       friction.normalize();
       friction.mult(-1);
 
-      let mu = 0.01;
+      let mu = 0.05;
       let normal = this.mass;
       friction.setMag(mu * normal);
       this.netForce(friction);
@@ -31,9 +33,7 @@ class Displacement {
 
   netForce(force) {
     // Use static version of division
-    this.setNetForceZero();
     var f = p5.Vector.div(force, this.mass);
-    //force.div(this.mass);
     this.acc.add(f);
   }
 
@@ -64,15 +64,6 @@ class Displacement {
         this.pos.add(this.vel);
       }
     }
-  }
-
-  update() {
-    // set last state to current state before update
-    this.vel.add(this.acc);
-    this.pos.add(this.vel);
-    this.acc.set(0, 0);
-    // set last state
-    // check boundries
   }
 
   update() {

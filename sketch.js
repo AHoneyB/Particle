@@ -1,20 +1,21 @@
 var displacement;
 var pointMasses = [];
-const num = 1;
+const num = 10;
 
 function setup() {
   const maxv = 10;
   createCanvas(600, 600);
   for (i = 0; i < num; i++) {
     pointMasses[i] = new Displacement(
-      random(1, 6),
-      width / 2,
+      random(1, 100),
+      (width / num) * i + 10,
       height / 2,
-      random(-maxv, maxv),
+      5,
       0
     );
     pointMasses[i].setToGround();
-    //pointMasses[i] = new Displacement(i + 1, width / 2, height * 0.1, 0, 0);
+
+    //random(-maxv, maxv)
   }
   background(0);
 }
@@ -37,9 +38,10 @@ function draw() {
 
   for (i = 0; i < num; i++) {
     var weight = p5.Vector.mult(gravity, pointMasses[i].mass);
-    pointMasses[i].netForce(weight);
+    // pointMasses[i].netForce(weight);
     pointMasses[i].friction();
     pointMasses[i].update();
+    pointMasses[i].setNetForceZero();
     pointMasses[i].boundry();
     pointMasses[i].show();
   }
