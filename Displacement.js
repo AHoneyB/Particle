@@ -51,9 +51,11 @@ class Displacement {
     // set last state to current state before update
     this.vel.add(this.acc);
     this.pos.add(this.vel);
-    this.acc.set(0, 0);
+    //this.acc.set(0, 0);
     // set last state
     // check boundries
+
+    //this.boundry();
   }
 
   show() {
