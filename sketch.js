@@ -1,3 +1,4 @@
+// Main script
 var displacement;
 var pointMasses = [];
 const num = 50;
