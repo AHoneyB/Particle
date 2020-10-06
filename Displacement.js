@@ -7,6 +7,10 @@ class Displacement {
     this.r = sqrt(this.mass) * 10;
   }
 
+  setNetForceZero() {
+    this.acc.set(0, 0);
+  }
+
   netForce(force) {
     // Use static version of division
     var f = p5.Vector.div(force, this.mass);
