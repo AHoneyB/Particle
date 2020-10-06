@@ -1,6 +1,6 @@
 var displacement;
 var pointMasses = [];
-const num = 200;
+const num = 1;
 
 function setup() {
   const maxv = 10;
