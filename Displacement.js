@@ -5,6 +5,14 @@ class Displacement {
     this.acc = createVector(0, 0);
     this.mass = mass;
     this.r = sqrt(this.mass) * 10;
+
+    this.posLast = this.pos;
+    this.velLast = this.vel;
+    this.accLast = this.acc;
+  }
+
+  setNetForceZero() {
+    this.acc.set(0, 0);
   }
 
   netForce(force) {
@@ -14,31 +22,45 @@ class Displacement {
     this.acc.add(f);
   }
 
+  update() {
+    // set last state to current state before update
+    this.vel.add(this.acc);
+    this.pos.add(this.vel);
+
+    // set last state
+    // check boundries
+
+    this.boundry();
+  }
+
   boundry() {
     if (this.pos.y > height) {
-      if (this.vel.y > 0) this.vel.y *= -1;
+      if (this.vel.y > 0) {
+        this.vel.y *= -1;
+        this.pos.add(this.vel);
+      }
     }
     if (this.pos.y < 0) {
-      if (this.vel.y < 0) this.vel.y *= -1;
+      if (this.vel.y < 0) {
+        this.vel.y *= -1;
+        this.pos.add(this.vel);
+      }
     }
     //  if (this.pos.y > height-this.r) DETERMINE EDGE of circle
     // this.pos = hieght-this.r;
 
     if (this.pos.x > width) {
-      if (this.vel.x > 0) this.vel.x *= -1;
+      if (this.vel.x > 0) {
+        this.vel.x *= -1;
+        this.pos.add(this.vel);
+      }
     }
     if (this.pos.x < 0) {
-      if (this.vel.x < 0) this.vel.x *= -1;
+      if (this.vel.x < 0) {
+        this.vel.x *= -1;
+        this.pos.add(this.vel);
+      }
     }
-  }
-
-  update() {
-    // set last state to current state before update
-    this.vel.add(this.acc);
-    this.pos.add(this.vel);
-    this.acc.set(0, 0);
-    // set last state
-    // check boundries
   }
 
   show() {
