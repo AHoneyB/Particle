@@ -19,20 +19,31 @@ class Displacement {
   }
 
   boundry() {
-    if (this.pos.y > height) {
-      if (this.vel.y > 0) this.vel.y *= -1;
+    // Added radius to particle
+    if (this.pos.y > height - this.r) {
+      if (this.vel.y > 0) {
+        this.vel.y *= -1;
+        this.pos.add(this.vel);
+      }
     }
-    if (this.pos.y < 0) {
-      if (this.vel.y < 0) this.vel.y *= -1;
+    if (this.pos.y < this.r) {
+      if (this.vel.y < 0) {
+        this.vel.y *= -1;
+        this.pos.add(this.vel);
+      }
     }
-    //  if (this.pos.y > height-this.r) DETERMINE EDGE of circle
-    // this.pos = hieght-this.r;
 
-    if (this.pos.x > width) {
-      if (this.vel.x > 0) this.vel.x *= -1;
+    if (this.pos.x > width - this.r) {
+      if (this.vel.x > 0) {
+        this.vel.x *= -1;
+        this.pos.add(this.vel);
+      }
     }
-    if (this.pos.x < 0) {
-      if (this.vel.x < 0) this.vel.x *= -1;
+    if (this.pos.x < this.r) {
+      if (this.vel.x < 0) {
+        this.vel.x *= -1;
+        this.pos.add(this.vel);
+      }
     }
   }
 
