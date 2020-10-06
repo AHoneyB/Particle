@@ -1,18 +1,28 @@
 class Displacement {
   constructor(mass, x, y, vx, vy) {
+    this.r = sqrt(this.mass) * 10;
     this.pos = createVector(x, y);
     this.vel = createVector(vx, vy);
     this.acc = createVector(0, 0);
     this.mass = mass;
+<<<<<<< HEAD
+
+    this.posLast = this.pos;
+    this.velLast = this.vel;
+    this.accLast = this.acc;
+=======
     this.r = 5 * sqrt(this.mass);
   }
 
   setToGround() {
     this.pos.y = height - this.r;
+>>>>>>> edit
   }
 
   setNetForceZero() {
     this.acc.set(0, 0);
+<<<<<<< HEAD
+=======
   }
 
   friction() {
@@ -27,12 +37,68 @@ class Displacement {
       friction.setMag(mu * normal);
       this.netForce(friction);
     }
+>>>>>>> edit
   }
 
   netForce(force) {
     // Use static version of division
     var f = p5.Vector.div(force, this.mass);
     this.acc.add(f);
+  }
+
+<<<<<<< HEAD
+  friction() {
+    let diff = height - (this.pos.y + this.r);
+    if (diff < 1) {
+      let friction = this.vel.copy();
+      friction.normalize();
+      friction.mult(-1);
+
+      let mu = 0.1;
+      let normal = this.mass;
+      friction.setMag(mu * normal);
+      this.netForce(friction);
+=======
+  boundry() {
+    // Added radius to particle
+    if (this.pos.y > height - this.r) {
+      if (this.vel.y > 0) {
+        this.vel.y *= -1;
+        this.pos.add(this.vel);
+      }
+    }
+    if (this.pos.y < this.r) {
+      if (this.vel.y < 0) {
+        this.vel.y *= -1;
+        this.pos.add(this.vel);
+      }
+    }
+
+    if (this.pos.x > width - this.r) {
+      if (this.vel.x > 0) {
+        this.vel.x *= -1;
+        this.pos.add(this.vel);
+      }
+    }
+    if (this.pos.x < this.r) {
+      if (this.vel.x < 0) {
+        this.vel.x *= -1;
+        this.pos.add(this.vel);
+      }
+>>>>>>> edit
+    }
+  }
+
+  update() {
+    // set last state to current state before update
+    this.vel.add(this.acc);
+    this.pos.add(this.vel);
+
+    // set last state
+    // check boundries
+
+    this.boundry();
+<<<<<<< HEAD
   }
 
   boundry() {
@@ -62,17 +128,8 @@ class Displacement {
         this.pos.add(this.vel);
       }
     }
-  }
-
-  update() {
-    // set last state to current state before update
-    this.vel.add(this.acc);
-    this.pos.add(this.vel);
-    this.acc.set(0, 0);
-    // set last state
-    // check boundries
-
-    this.boundry();
+=======
+>>>>>>> edit
   }
 
   show() {
