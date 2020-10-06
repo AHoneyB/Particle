@@ -31,11 +31,12 @@ function draw() {
 
   var gravity = createVector(0, 0.05);
   // for (i = 0; i < num; i++) {
-  // 	var weight = p5.Vector.mult(gravity, pointMasses[i].mass);
-  // 	pointMasses[i].netForce(weight);
+  //
   // }
 
   for (i = 0; i < num; i++) {
+    var weight = p5.Vector.mult(gravity, pointMasses[i].mass);
+    pointMasses[i].netForce(weight);
     pointMasses[i].update();
     pointMasses[i].boundry();
     pointMasses[i].show();
