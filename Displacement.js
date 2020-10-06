@@ -5,39 +5,26 @@ class Displacement {
     this.vel = createVector(vx, vy);
     this.acc = createVector(0, 0);
     this.mass = mass;
-<<<<<<< HEAD
-
-    this.posLast = this.pos;
-    this.velLast = this.vel;
-    this.accLast = this.acc;
-=======
-    this.r = 5 * sqrt(this.mass);
+    this.r = 2 * sqrt(this.mass);
   }
 
   setToGround() {
     this.pos.y = height - this.r;
->>>>>>> edit
   }
 
   setNetForceZero() {
     this.acc.set(0, 0);
-<<<<<<< HEAD
-=======
   }
 
-  friction() {
-    let diff = height - (this.pos.y + this.r);
-    if (diff < 1) {
-      let friction = this.vel.copy();
-      friction.normalize();
-      friction.mult(-1);
+  drag() {
+    let drag = this.vel.copy();
+    drag.normalize();
+    drag.mult(-1);
 
-      let mu = 0.001;
-      let normal = this.mass * this.mass;
-      friction.setMag(mu * normal);
-      this.netForce(friction);
-    }
->>>>>>> edit
+    let c = 0.5;
+    let speedSq = this.vel.magSq();
+    drag.setMag(c * speedSq);
+    this.netForce(drag);
   }
 
   netForce(force) {
@@ -46,19 +33,6 @@ class Displacement {
     this.acc.add(f);
   }
 
-<<<<<<< HEAD
-  friction() {
-    let diff = height - (this.pos.y + this.r);
-    if (diff < 1) {
-      let friction = this.vel.copy();
-      friction.normalize();
-      friction.mult(-1);
-
-      let mu = 0.1;
-      let normal = this.mass;
-      friction.setMag(mu * normal);
-      this.netForce(friction);
-=======
   boundry() {
     // Added radius to particle
     if (this.pos.y > height - this.r) {
@@ -67,7 +41,7 @@ class Displacement {
         this.pos.add(this.vel);
       }
     }
-    if (this.pos.y < this.r) {
+    if (this.pos.y < this.r - this.r) {
       if (this.vel.y < 0) {
         this.vel.y *= -1;
         this.pos.add(this.vel);
@@ -85,7 +59,6 @@ class Displacement {
         this.vel.x *= -1;
         this.pos.add(this.vel);
       }
->>>>>>> edit
     }
   }
 
@@ -98,38 +71,6 @@ class Displacement {
     // check boundries
 
     this.boundry();
-<<<<<<< HEAD
-  }
-
-  boundry() {
-    // Added radius to particle
-    if (this.pos.y > height - this.r) {
-      if (this.vel.y > 0) {
-        this.vel.y *= -1;
-        this.pos.add(this.vel);
-      }
-    }
-    if (this.pos.y < this.r) {
-      if (this.vel.y < 0) {
-        this.vel.y *= -1;
-        this.pos.add(this.vel);
-      }
-    }
-
-    if (this.pos.x > width - this.r) {
-      if (this.vel.x > 0) {
-        this.vel.x *= -1;
-        this.pos.add(this.vel);
-      }
-    }
-    if (this.pos.x < this.r) {
-      if (this.vel.x < 0) {
-        this.vel.x *= -1;
-        this.pos.add(this.vel);
-      }
-    }
-=======
->>>>>>> edit
   }
 
   show() {
