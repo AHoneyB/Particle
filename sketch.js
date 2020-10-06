@@ -38,6 +38,7 @@ function draw() {
   for (i = 0; i < num; i++) {
     var weight = p5.Vector.mult(gravity, pointMasses[i].mass);
     pointMasses[i].netForce(weight);
+    pointMasses[i].friction();
     pointMasses[i].update();
     pointMasses[i].boundry();
     pointMasses[i].show();

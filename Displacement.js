@@ -22,7 +22,7 @@ class Displacement {
       friction.normalize();
       friction.mult(-1);
 
-      let mu = 0.1;
+      let mu = 0.01;
       let normal = this.mass;
       friction.setMag(mu * normal);
       this.netForce(friction);
