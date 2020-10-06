@@ -9,7 +9,7 @@ function setup() {
     //let m = random(0.5, 3);
     ///let r = sqrt(m) * 10;
     pointMasses[i] = new Displacement(
-      1,
+      10,
       width / 2,
       height / 2,
       random(-maxv, maxv),

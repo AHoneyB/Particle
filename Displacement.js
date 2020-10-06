@@ -61,8 +61,6 @@ class Displacement {
         this.pos.add(this.vel);
       }
     }
-    //  if (this.pos.y > height-this.r) DETERMINE EDGE of circle
-    // this.pos = hieght-this.r;
 
     if (this.pos.x > width - this.r) {
       if (this.vel.x > 0) {
