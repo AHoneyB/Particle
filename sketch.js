@@ -1,6 +1,6 @@
 var displacement;
 var pointMasses = [];
-const num = 10;
+const num = 50;
 
 function setup() {
   const maxv = 5;
@@ -9,13 +9,14 @@ function setup() {
     //let m = random(0.5, 3);
     ///let r = sqrt(m) * 10;
     pointMasses[i] = new Displacement(
-      (i + 1) * 2,
+      random(5, 20),
       (width / num) * i + 10,
       height * 0.1,
       0,
-      5
+      0
     );
     // pointMasses[i].setToGround();
+    // (i + 1) * 2
 
     //random(-maxv, maxv)
   }

@@ -5,7 +5,7 @@ class Displacement {
     this.vel = createVector(vx, vy);
     this.acc = createVector(0, 0);
     this.mass = mass;
-    this.r = 5 * sqrt(this.mass);
+    this.r = 2 * sqrt(this.mass);
   }
 
   setToGround() {
@@ -41,7 +41,7 @@ class Displacement {
         this.pos.add(this.vel);
       }
     }
-    if (this.pos.y < this.r) {
+    if (this.pos.y < this.r - this.r) {
       if (this.vel.y < 0) {
         this.vel.y *= -1;
         this.pos.add(this.vel);
